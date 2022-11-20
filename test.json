@@ -1,0 +1,48 @@
+{
+   "flows": [
+      {
+         "priority": 40000,
+         "timeout": 0,
+         "isPermanent": true,
+         "deviceId": "of:0000000000000001",
+         "instructions": [
+            {
+               "type": "OUTPUT",
+               "port": "2"
+            }
+         ],
+         "criteria": [
+            {
+               "type": "ETH_DST",
+               "mac": "00:00:00:00:00:0a"
+            },
+            {
+               "type": "ETH_TYPE",
+               "ethType": "0x0800"
+            }
+         ]
+      },
+      {
+         "priority": 40000,
+         "timeout": 0,
+         "isPermanent": true,
+         "deviceId": "of:0000000000000001",
+         "instructions": [
+            {
+               "type": "OUTPUT",
+               "port": "4"
+            }
+         ],
+         "criteria": [
+            {
+               "type": "ETH_DST",
+               "mac": "00:00:00:00:00:02"
+            },
+            {
+               "type": "ETH_TYPE",
+               "ethType": "0x0800"
+            }
+         ]
+      }
+   ]
+}
