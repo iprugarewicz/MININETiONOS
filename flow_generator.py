@@ -9,7 +9,6 @@ class flow_generator:
     IP = None
 
     def __init__(self, name, IP):
-        print("data_loader created")
         self.data = json.loads('{"flows": []}')
         self.name = name
         self.IP = IP
@@ -22,7 +21,7 @@ class flow_generator:
         deviceId[15] = str(hex(ID)[2])
         temp.update({"deviceId": "of:" + "".join(deviceId)})
         instructions = json.loads('{"type": "OUTPUT","port": "' + str(port) + '"}')
-        temp.update({"treatment":""})
+        temp.update({"treatment": ""})
         treatment = json.loads('{"instructions":""}')
         treatment["instructions"] = [instructions]
         temp["treatment"] = treatment
@@ -31,9 +30,10 @@ class flow_generator:
         "00:00:00:00:00:0''' + hex(DST)[2] + '''"},{"type": "ETH_TYPE",
         "ethType": "0x0800"}]}''')
         temp.update({"selector": ""})
-        temp["selector"]=criteria
+        temp["selector"] = criteria
         self.data["flows"].append(temp)
-        print("added flow from " + str(ID) + " to " + str(DST) + ", port = " + str(port))
+
+    #  print("added flow from " + str(ID) + " to " + str(DST) + ", port = " + str(port))
 
     def __dump(self):
         test = json.dumps(self.data, indent=3)
@@ -44,10 +44,8 @@ class flow_generator:
         self.__dump()
         headers = {'Content-Type': 'application/json', 'Accept': 'application/json', }
 
-        with open(self.name+'.json') as f:
+        with open(self.name + '.json') as f:
             data = f.read()
             response = requests.post('http://' + self.IP + ':8181/onos/v1/flows', headers=headers, data=data,
                                      auth=('onos', 'rocks'))
         print(response)
-
-
