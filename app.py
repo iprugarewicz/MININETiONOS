@@ -5,11 +5,14 @@ n = 10
 while run:
     print("This program configures connection in ONOS controller between pairs of hosts")
     configuring = True
-    h1, h2, bw = None
+    h1 = None
+    h2 = None
+    bw = None
     while configuring:
         print("what is host1")
         h1_chosen = False
-        controller = c.controller("temp", "sweden_map", "192.168.0.29")
+        #w linijce poniżej należy uzupełnić argumenty- po kolei: nazwa pliku json bez rozszerzenia, nazwa pliku csv bez rozszerzenia, IP ONOS-a
+        controller = c.controller("temp", "sweden_map", "192.168.0.129")
         while not h1_chosen:
             try:
                 h1 = int(input())
@@ -54,9 +57,10 @@ while run:
 
         controller.generate_flows(h1, h2, bw)
 
-        print("Would you like to configure another connection or send flows to the server? (Config/Send)")
+        print("Would you like to configure another connection or send flows to the server? ")
         temp = None
         while temp not in ["Config", "Send"]:
+            print("(Config/Send)")
             temp = input()
             if temp == 'Send':
                 controller.send()

@@ -44,8 +44,17 @@ class flow_generator:
         self.__dump()
         headers = {'Content-Type': 'application/json', 'Accept': 'application/json', }
 
-        with open(self.name + '.json') as f:
-            data = f.read()
-            response = requests.post('http://' + self.IP + ':8181/onos/v1/flows', headers=headers, data=data,
-                                     auth=('onos', 'rocks'))
-        print(response)
+        try:
+            with open(self.name + '.json') as f:
+                data = f.read()
+                response = requests.post('http://' + self.IP + ':8181/onos/v1/flows', headers=headers, data=data,
+                                         auth=('onos', 'rocks'))
+                if 300 > response.status_code >= 200:
+                    print("Done")
+                else:
+                    raise TimeoutError
+        except :
+            print("problem has occurred, could not send")
+            pass
+
+

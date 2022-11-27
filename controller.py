@@ -20,7 +20,7 @@ class controller:
             # print(trace[i], trace[i + 1],
             #       self.ports[trace[i]][trace[i + 1]], self.ports[trace[i + 1]][trace[i]])
             n: dict = self.graph.G.get_edge_data(trace[i], trace[i + 1])
-            self.graph.G.add_edge(trace[i], trace[i + 1], weight=n['weight'] + 5)
+            self.graph.G.add_edge(trace[i], trace[i + 1], weight=n['weight'] + 2)
             self.flow.add(trace[i], self.ports[trace[i]][trace[i + 1]], B)
             self.flow.add(trace[i + 1], self.ports[trace[i + 1]][trace[i]], A)
 
