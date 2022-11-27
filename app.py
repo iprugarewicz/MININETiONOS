@@ -8,11 +8,12 @@ while run:
     h1 = None
     h2 = None
     bw = None
+    controller = c.controller("temp", "sweden_map", "192.168.0.29")
     while configuring:
         print("what is host1")
         h1_chosen = False
         #w linijce poniżej należy uzupełnić argumenty- po kolei: nazwa pliku json bez rozszerzenia, nazwa pliku csv bez rozszerzenia, IP ONOS-a
-        controller = c.controller("temp", "sweden_map", "192.168.0.29")
+
         while not h1_chosen:
             try:
                 h1 = int(input())
